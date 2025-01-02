@@ -19,7 +19,9 @@ public class UserAdvice {
     public ResponseEntity<Response> handleUserNotFound(UserNotFound ex){
         Response res = new Response();
         Map<String, String> error = new HashMap<>();
-        error.put(ErrorCodes.USER_NOT_FOUND.getValue(), ex.getMessage());
+        System.out.println("Error in Application -->"+ex);
+        ex.printStackTrace();
+        error.put(ErrorCodes.USER_NOT_FOUND.getCode(), ErrorCodes.USER_NOT_FOUND.getMessage());
         res.setError(error);
         return new ResponseEntity<Response>(res, HttpStatus.NOT_FOUND);
     }
@@ -28,9 +30,11 @@ public class UserAdvice {
     public ResponseEntity<Response> handleUserException(Exception ex){
         Response res = new Response();
         Map<String, String> error = new HashMap<>();
-        error.put(ErrorCodes.APPLICATION_ERROR.getValue(), ex.getMessage());
+        System.out.println("Error in Application -->"+ex);
+        ex.printStackTrace();
+        error.put(ErrorCodes.APPLICATION_ERROR.getCode(), ErrorCodes.APPLICATION_ERROR.getMessage());
         res.setError(error);
-        return new ResponseEntity<Response>(res, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<Response>(res, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }

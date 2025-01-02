@@ -1,11 +1,10 @@
 spring:
   application:
     name: JAVATEST
-  h2:
-    console:
-      enabled: true
   datasource:
-    url: jdbc:h2:mem:mydb
+    url: jdbc:mysql://localhost:3306/UserDb
+    username: root
+    password: admin
   jpa:
     generate-ddl: true
     hibernate:
